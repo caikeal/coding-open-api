@@ -20,6 +20,7 @@ use CodingOpenApi\Kernel\ServiceContainer;
  * @property \CodingOpenApi\Enterprise\Auth\RefreshToken $refresh_token
  * @property \CodingOpenApi\Enterprise\Base\Client       $base
  * @property \CodingOpenApi\Enterprise\User\Client       $user
+ * @property \CodingOpenApi\Enterprise\Team\Client       $team
  */
 class Application extends ServiceContainer
 {
@@ -30,6 +31,7 @@ class Application extends ServiceContainer
         Auth\ServiceProvider::class,
         Base\ServiceProvider::class,
         User\ServiceProvider::class,
+        Team\ServiceProvider::class,
     ];
 
     /**
