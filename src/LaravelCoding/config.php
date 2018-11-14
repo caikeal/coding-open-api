@@ -1,0 +1,32 @@
+<?php
+
+/*
+ * This file is part of the caikeal/coding-open-api.
+ * (c) caikeal <caikeal@qq.com>
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
+return [
+    /*
+     * 默认配置，将会合并到各模块中
+     */
+    'defaults' => [
+        /*
+         * 指定 API 调用返回结果的类型：array(default)/collection/object/raw/自定义类名
+         */
+        'response_type' => 'array',
+        /*
+         * 使用 Laravel 的缓存系统
+         */
+        'use_laravel_cache' => true,
+    ],
+    'enterprise' => [
+        'default' => [
+            'client_id' => env('CODING_ENTERPRISE_CLIENT_ID', 'your-client-id'),         // AppID
+            'client_secret' => env('CODING_ENTERPRISE_CLIENT_SECRET', 'your-client-secret'), // AppSecret
+            'scope' => 'all',
+            'pre_auth_redirect_uri' => 'your-redirect-uri',
+        ],
+    ],
+];
