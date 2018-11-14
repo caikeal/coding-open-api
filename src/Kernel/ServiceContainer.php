@@ -75,7 +75,7 @@ class ServiceContainer extends Container
             // http://docs.guzzlephp.org/en/stable/request-options.html
             'http' => [
                 'timeout' => 30.0,
-                'base_uri' => $this->defaultConfig['team'] ? "https://{$this->defaultConfig['team']}.coding.net/" : 'https://coding.net/',
+                'base_uri' => $this->defaultConfig['team'] ? "{$this->userConfig['protocol']}://{$this->defaultConfig['team']}.{$this->userConfig['main_domain']}/" : "{$this->userConfig['protocol']}://{$this->userConfig['main_domain']}/",
             ],
         ];
 

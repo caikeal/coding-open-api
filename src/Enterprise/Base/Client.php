@@ -27,7 +27,12 @@ class Client extends BaseClient
     public function createPreAuthorizationUrl($url = ''): string
     {
         $mainUrl = explode('?', $this->app['config']['pre_auth_redirect_uri']);
-        $query = explode('&', $mainUrl[1] ?? '');
+        if (isset($mainUrl[1])) {
+            $query = explode('&', $mainUrl[1]);
+        } else {
+            $query = [];
+        }
+
         if ($url) {
             $query[] = 'redirect_uri='.$url;
         }
