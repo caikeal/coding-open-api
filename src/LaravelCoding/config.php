@@ -25,8 +25,8 @@ return [
         'default' => [
             'client_id' => env('CODING_ENTERPRISE_CLIENT_ID', 'your-client-id'),         // AppID
             'client_secret' => env('CODING_ENTERPRISE_CLIENT_SECRET', 'your-client-secret'), // AppSecret
-            'scope' => 'all',
-            'pre_auth_redirect_uri' => 'your-redirect-uri',
+            'scope' => env('CODING_ENTERPRISE_SCOPE', 'all'),
+            'pre_auth_redirect_uri' => env('CODING_ENTERPRISE_REDIRECT_URI', 'your-redirect-uri'),
         ],
     ],
 ];
