@@ -34,7 +34,7 @@ class Client extends BaseClient
      */
     public function currentMobile()
     {
-        return $this->httpGet('/api/account/phone/info');
+        return $this->httpGet('/api/enterprise/user/phone/info');
     }
 
     /**
