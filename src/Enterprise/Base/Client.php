@@ -19,15 +19,24 @@ use CodingOpenApi\Kernel\BaseClient;
 class Client extends BaseClient
 {
     /**
-     * Create pre-authorization code.
+     * Create pre-authorization url.
      *
+     * @param string $url
      * @return string
      */
-    public function createPreAuthorizationCode(): string
+    public function createPreAuthorizationUrl($url = ''): string
     {
+        $mainUrl = explode('?', $this->app['config']['pre_auth_redirect_uri']);
+        $query = explode('&', $mainUrl[1] ?? '');
+        if ($url) {
+            $query[] = 'redirect_uri='.$url;
+        }
+        $queryString = implode('&', $query);
+        $fullUrl = $mainUrl[0] . '?' . $queryString;
+
         $params = [
             'client_id' => $this->app['config']['client_id'],
-            'redirect_uri' => $this->app['config']['pre_auth_redirect_uri'],
+            'redirect_uri' => $fullUrl,
             'response_type' => 'code',
             'scope' => $this->app['config']['scope'], // 用逗号分割
         ];
