@@ -48,7 +48,7 @@ class Application extends ServiceContainer
             'team' => $team,
         ];
 
-        $refreshToken && $this->refresh_token->setToken($team, $refreshToken);
+        $refreshToken && $this->refresh_token->setToken($refreshToken);
 
         return $this;
     }
