@@ -104,6 +104,59 @@ class BaseClient
     }
 
     /**
+     * PUT Request.
+     * 
+     * @param string $url
+     * @param array $data
+     * @param array $query
+     * @param bool $auth
+     * 
+     * @return array|Support\Collection|object|ResponseInterface|string
+     * 
+     * @throws Exceptions\InvalidConfigException
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function httpPutJson(string $url, array $data = [], array $query = [], $auth = true)
+    {
+        return $this->request($url, 'PUT', ['query' => $query, 'json' => $data], false, $auth);
+    }
+
+    /**
+     * PATCH Request.
+     * 
+     * @param string $url
+     * @param array $data
+     * @param array $query
+     * @param bool $auth
+     * 
+     * @return array|Support\Collection|object|ResponseInterface|string
+     * 
+     * @throws Exceptions\InvalidConfigException
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function httpPatchJson(string $url, array $data = [], array $query = [], $auth = true)
+    {
+        return $this->request($url, 'PATCH', ['query' => $query, 'json' => $data], false, $auth);
+    }
+
+    /**
+     * DELETE Request.
+     *
+     * @param string $url
+     * @param array $query
+     * @param bool $auth
+     *
+     * @return array|Support\Collection|object|ResponseInterface|string
+     *
+     * @throws Exceptions\InvalidConfigException
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function httpDelete(string $url, array $query = [], $auth = true)
+    {
+        return $this->request($url, 'DELETE', ['query' => $query], false, $auth);
+    }
+
+    /**
      * Upload file.
      *
      * @param string $url

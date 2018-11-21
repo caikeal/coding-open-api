@@ -21,6 +21,7 @@ use CodingOpenApi\Kernel\ServiceContainer;
  * @property \CodingOpenApi\Enterprise\Base\Client       $base
  * @property \CodingOpenApi\Enterprise\User\Client       $user
  * @property \CodingOpenApi\Enterprise\Team\Client       $team
+ * @property \CodingOpenApi\Enterprise\ApiKey\Client     $api_key
  */
 class Application extends ServiceContainer
 {
@@ -32,6 +33,7 @@ class Application extends ServiceContainer
         Base\ServiceProvider::class,
         User\ServiceProvider::class,
         Team\ServiceProvider::class,
+        ApiKey\ServiceProvider::class,
     ];
 
     /**
