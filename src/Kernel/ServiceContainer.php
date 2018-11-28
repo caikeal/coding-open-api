@@ -11,13 +11,14 @@ namespace CodingOpenApi\Kernel;
 
 use CodingOpenApi\Kernel\Providers\ConfigServiceProvider;
 use CodingOpenApi\Kernel\Providers\HttpClientServiceProvider;
+use CodingOpenApi\Kernel\Providers\LogServiceProvider;
 use CodingOpenApi\Kernel\Providers\RequestServiceProvider;
 use Pimple\Container;
 
 /**
  * Class ServiceContainer.
  *
- * @author overtrue <i@overtrue.me>
+ * @author caikeal <caikeal@qq.com>
  *
  * @property \CodingOpenApi\Kernel\Config              $config
  * @property \Symfony\Component\HttpFoundation\Request $request
@@ -90,6 +91,7 @@ class ServiceContainer extends Container
     public function getProviders()
     {
         return array_merge([
+            LogServiceProvider::class,
             ConfigServiceProvider::class,
             RequestServiceProvider::class,
             HttpClientServiceProvider::class,

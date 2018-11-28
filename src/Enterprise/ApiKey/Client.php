@@ -19,6 +19,7 @@ class Client extends BaseClient
      * 获取当前用户的信息.
      *
      * @param array $params
+     *
      * @return array|\CodingOpenApi\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
      *
      * @throws \CodingOpenApi\Kernel\Exceptions\InvalidConfigException
@@ -31,6 +32,7 @@ class Client extends BaseClient
 
     /**
      * @param array $params
+     *
      * @return array|\CodingOpenApi\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
      *
      * @throws \CodingOpenApi\Kernel\Exceptions\InvalidConfigException
@@ -43,6 +45,7 @@ class Client extends BaseClient
 
     /**
      * @param array $params
+     *
      * @return array|\CodingOpenApi\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
      *
      * @throws \CodingOpenApi\Kernel\Exceptions\InvalidConfigException

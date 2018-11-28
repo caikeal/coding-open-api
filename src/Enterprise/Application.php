@@ -9,6 +9,7 @@
 
 namespace CodingOpenApi\Enterprise;
 
+use CodingOpenApi\Kernel\Config;
 use CodingOpenApi\Kernel\ServiceContainer;
 
 /**
@@ -49,6 +50,7 @@ class Application extends ServiceContainer
         $this->defaultConfig = [
             'team' => $team,
         ];
+        $this->rebind('config', new Config($this->getConfig()));
 
         $refreshToken && $this->refresh_token->setToken($refreshToken);
 

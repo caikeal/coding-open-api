@@ -22,6 +22,18 @@ return [
         'use_laravel_cache' => true,
 
         /*
+         * 日志配置
+         *
+         * level: 日志级别，可选为：
+         *                 debug/info/notice/warning/error/critical/alert/emergency
+         * file：日志文件位置(绝对路径!!!)，要求可写权限
+         */
+        'log' => [
+            'level' => env('CODING_OPEN_API_LOG_LEVEL', 'debug'),
+            'file' => env('CODING_OPEN_API_LOG_FILE', storage_path('logs/coding_open_api.log')),
+        ],
+
+        /*
          * 配置请求协议
          */
         'protocol' => 'https',

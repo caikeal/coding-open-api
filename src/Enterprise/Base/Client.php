@@ -22,6 +22,7 @@ class Client extends BaseClient
      * Create pre-authorization url.
      *
      * @param string $url
+     *
      * @return string
      */
     public function createPreAuthorizationUrl($url = ''): string
@@ -37,7 +38,7 @@ class Client extends BaseClient
             $query[] = 'redirect_uri='.$url;
         }
         $queryString = implode('&', $query);
-        $fullUrl = $mainUrl[0] . '?' . $queryString;
+        $fullUrl = $mainUrl[0].'?'.$queryString;
 
         $params = [
             'client_id' => $this->app['config']['client_id'],

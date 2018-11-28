@@ -14,6 +14,7 @@ use CodingOpenApi\Kernel\Http\Response;
 use CodingOpenApi\Kernel\Traits\HasHttpRequests;
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
+use GuzzleHttp\MessageFormatter;
 use GuzzleHttp\Middleware;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -105,14 +106,14 @@ class BaseClient
 
     /**
      * PUT Request.
-     * 
+     *
      * @param string $url
-     * @param array $data
-     * @param array $query
-     * @param bool $auth
-     * 
+     * @param array  $data
+     * @param array  $query
+     * @param bool   $auth
+     *
      * @return array|Support\Collection|object|ResponseInterface|string
-     * 
+     *
      * @throws Exceptions\InvalidConfigException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
@@ -123,14 +124,14 @@ class BaseClient
 
     /**
      * PATCH Request.
-     * 
+     *
      * @param string $url
-     * @param array $data
-     * @param array $query
-     * @param bool $auth
-     * 
+     * @param array  $data
+     * @param array  $query
+     * @param bool   $auth
+     *
      * @return array|Support\Collection|object|ResponseInterface|string
-     * 
+     *
      * @throws Exceptions\InvalidConfigException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
@@ -143,8 +144,8 @@ class BaseClient
      * DELETE Request.
      *
      * @param string $url
-     * @param array $query
-     * @param bool $auth
+     * @param array  $query
+     * @param bool   $auth
      *
      * @return array|Support\Collection|object|ResponseInterface|string
      *
@@ -270,6 +271,8 @@ class BaseClient
         $this->pushMiddleware($this->retryMiddleware(), 'retry');
         // access token
         $this->pushMiddleware($this->accessTokenMiddleware(), 'access_token');
+        // log
+        $this->pushMiddleware($this->logMiddleware(), 'log');
     }
 
     /**
@@ -288,6 +291,18 @@ class BaseClient
                 return $handler($request, $options);
             };
         };
+    }
+
+    /**
+     * Log the request.
+     *
+     * @return \Closure
+     */
+    protected function logMiddleware()
+    {
+        $formatter = new MessageFormatter($this->app['config']['http.log_template'] ?? MessageFormatter::DEBUG);
+
+        return Middleware::log($this->app['logger'], $formatter);
     }
 
     /**
