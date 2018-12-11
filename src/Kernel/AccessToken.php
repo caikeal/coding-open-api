@@ -108,6 +108,10 @@ abstract class AccessToken implements AccessTokenInterface
             return $cache->get($cacheKey);
         }
         $token = $this->requestToken($this->getCredentials(), true);
+        // 更新失效 refresh_token 的 access_token, 以防同进程中使用报错
+        $this->setToken($token[$this->tokenKey], $token['expires_in'] ?? 7200);
+
+        // 更新 refresh_token 值，并更新对应 access_token
         $this->app['refresh_token']->setToken($token[$this->refreshTokenKey]);
         $this->setToken($token[$this->tokenKey], $token['expires_in'] ?? 7200);
         Event::dispatch(new RefreshTokenChanged($token));
