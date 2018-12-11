@@ -321,7 +321,8 @@ class BaseClient
             if ($retries < $this->app->config->get('http.max_retries', 1) && $response && $body = $response->getBody()) {
                 // Retry on server errors
                 $response = json_decode($body, true);
-                if (!empty($response['code']) && in_array(abs($response['code']), [1], true) && !empty($response['msg']) && !empty($response['oauth_auth_expired'])) {
+                if (!empty($response['code']) && !empty($response['msg']) &&
+                    (key_exists('oauth_auth_expired', $response['msg']) || key_exists('oauth_access_token_invalid', $response['msg']))) {
                     $this->accessToken->refresh();
 
                     return true;
