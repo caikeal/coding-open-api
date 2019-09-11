@@ -32,7 +32,7 @@ class Client extends BaseClient
      */
     public function user()
     {
-        return $this->httpGet('/api/team/'.$this->app['config']['team'].'/members');
+        return $this->httpGet('/api/team/'.$this->app['config']['team'].'/members', ['page' => 1, 'pageSize' => 999999]);
     }
 
     /**@return array|\CodingOpenApi\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
